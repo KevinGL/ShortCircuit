@@ -18,6 +18,23 @@ if(!isset($_SESSION["auth"]))
     <title>Tableau de bord — Accueil</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+    <style>
+        @media (max-width: 768px) {
+            .fc .fc-toolbar {
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+                align-items: center;
+            }
+            .fc .fc-toolbar-title {
+                font-size: 1.1rem !important;
+            }
+            .fc .fc-button {
+                padding: 0.3rem 0.5rem !important;
+                font-size: 0.8rem !important;
+            }
+        }
+    </style>
   </head>
 
   <body class="bg-slate-50 text-slate-800 min-main flex flex-col min-h-screen">

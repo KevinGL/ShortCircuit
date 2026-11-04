@@ -116,9 +116,7 @@ if(!isset($_SESSION["auth"]))
                             <input type="email" name="contact_email1" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600" />
                         </div>
                     </div>
-                </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-semibold text-slate-600 mb-1">Tél</label>
                         <input type="phone" name="contact_phone1" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600" />
@@ -191,9 +189,7 @@ if(!isset($_SESSION["auth"]))
                     <input type="email" name="contact_email${indexContact}" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600" />
                 </div>
             </div>
-        </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
                 <label class="block text-xs font-semibold text-slate-600 mb-1">Tél</label>
                 <input type="phone" name="contact_phone${indexContact}" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600" />
