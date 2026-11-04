@@ -102,6 +102,50 @@ $candidacy = getCandById($_GET["id"]);
                     <textarea name="infos" type="infos" value="<?= $candidacy['infos'] ?>" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent transition" ></textarea>
                 </div>
 
+                <hr class="border-slate-200 my-8">
+
+                <?php $index = 1; ?>
+
+                <?php foreach($candidacy["contacts"] as $contact): ?>
+                    <div class="space-y-4 bg-slate-50 p-5 rounded-xl border border-slate-200 contact-block">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-bold text-indigo-600 uppercase tracking-wider">Contact <?= $index ?></span>
+                        </div>
+                    
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">Nom</label>
+                                <div class="bg-slate-50 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                                    <?= $contact["name"] ?>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1">Email</label>
+                                <div class="bg-slate-50 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                                    <?= $contact["email"] ?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Tél</label>
+                            <div class="bg-slate-50 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                                <?= $contact["phone"] !== "" ? $contact["phone"] :  "N/A" ?>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Rôle</label>
+                            <div class="bg-slate-50 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                                <?= $contact["role"] ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <?php $index++; ?>
+                <?php endforeach ?>
+
                 <input name="id" value="<?= $_GET["id"] ?>" hidden />
 
                 <button id="save_cand" class="w-full sm:flex-1 px-4 py-2.5 border border-transparent text-sm font-semibold rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 shadow-md transition">
