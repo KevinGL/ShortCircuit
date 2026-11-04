@@ -1,7 +1,5 @@
 <?php
 
-require_once __DIR__ . "/../utils/env.php";
-
 function auth(string $password)
 {
     $vars = getEnvVar();

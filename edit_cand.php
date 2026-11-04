@@ -58,7 +58,7 @@ $candidacy = getCandById($_GET["id"]);
         <div class="bg-white shadow-xl shadow-slate-100 rounded-2xl border border-slate-200 p-6 sm:p-8">
 
             <div class="mb-8">
-                <h2 class="text-2xl font-extrabold text-slate-900">Enregistrer une candidature</h2>
+                <h2 class="text-2xl font-extrabold text-slate-900">Mettre à jour une candidature</h2>
                 <p class="text-sm text-slate-500 mt-1">Remplissez les informations de l'entreprise et de vos contacts clés.</p>
             </div>
 

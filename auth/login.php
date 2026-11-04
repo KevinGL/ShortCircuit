@@ -2,17 +2,20 @@
 
 session_start();
 
+require_once __DIR__ . "/../utils/env.php";
+require_once __DIR__ . "/auth.php";
+
 if(isset($_SESSION["auth"]))
 {
     header("location: ../home.php");
     die();
 }
 
-require_once __DIR__ . "/auth.php";
+if($_SERVER["REQUEST_METHOD"] === "POST"):
 
-?>
+  auth($_POST["password"]);
 
-<?php if($_SERVER["REQUEST_METHOD"] === "GET"): ?>
+endif ?>
 
 <!doctype html>
 <html lang="fr" class="h-full bg-slate-50">
@@ -91,9 +94,3 @@ require_once __DIR__ . "/auth.php";
         });
     }
 </script>
-
-<?php else:
-
-    auth($_POST["password"]);
-
-endif ?>
