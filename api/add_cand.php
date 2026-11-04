@@ -20,37 +20,6 @@ if(!isset($_POST["date"]) || $_POST["date"] === "")
     die();
 }
 
-if(!isset($_POST["nb_contacts"]) || $_POST["nb_contacts"] === "")
-{
-    $_SESSION["flash"] = ["status" => "error", "message" => "Une erreur s'est produite"];
-    header('location: ../add_cand.php');
-    die();
-}
-
-$contacts = [];
-
-for($i = 0 ; $i < $_POST["nb_contacts"] ; $i++)
-{
-    $nameContact = "contact_name" . ($i + 1);
-    $emailContact = "contact_email" . ($i + 1);
-    $phoneContact = "contact_phone" . ($i + 1);
-    $roleContact = "contact_role" . ($i + 1);
-
-    if(!isset($_POST[$nameContact]) || $_POST[$nameContact] === "" || !isset($_POST[$emailContact]) || $_POST[$emailContact] === "")
-    {
-        $_SESSION["flash"] = ["status" => "error", "message" => "Veuillez indiquer nom et adresse mail du contact"];
-        header('location: ../add_cand.php');
-        die();
-    }
-
-    $contacts[] = [
-        "name" => $_POST[$nameContact],
-        "email" => $_POST[$emailContact],
-        "phone" => $_POST[$phoneContact],
-        "role" => $_POST[$roleContact],
-        ];
-}
-
 $req = $pdo->prepare("INSERT INTO candidacy (society, type, status, date, infos) VALUES (:society, :type, :status, :date, :infos)");
 $res = $req->execute([
     "society" => $_POST["society"],
@@ -67,29 +36,6 @@ if(!$res)
     die();
 }
 
-$req = $pdo->query("SELECT id FROM candidacy ORDER BY id DESC LIMIT 1");
-$response = $req->fetch();
+$_SESSION["society_last_cand"] = $_POST["society"];
 
-$candId = $response["id"];
-
-foreach($contacts as $contact)
-{
-    $req = $pdo->prepare("INSERT INTO contact (name, email, phone, role, cand_id) VALUES (:name, :email, :phone, :role, :cand_id)");
-    $res = $req->execute([
-        "name" => $contact["name"],
-        "email" => $contact["email"],
-        "phone" => $contact["phone"],
-        "role" => $contact["role"],
-        "cand_id" => $candId
-    ]);
-
-    if(!$res)
-    {
-        $_SESSION["flash"] = ["status" => "error", "message" => "Erreur interne"];
-        header('location: ../add_cand.php');
-        die();
-    }
-}
-
-$_SESSION["flash"] = ["status" => "success", "message" => "Candidature ajoutée"];
-header('location: ../add_cand.php');
+header('location: ../add_contacts.php');

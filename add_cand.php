@@ -55,7 +55,7 @@ if(!isset($_SESSION["auth"]))
 
             <div class="mb-8">
                 <h2 class="text-2xl font-extrabold text-slate-900">Enregistrer une candidature</h2>
-                <p class="text-sm text-slate-500 mt-1">Remplissez les informations de l'entreprise et de vos contacts clés.</p>
+                <p class="text-sm text-slate-500 mt-1">Remplissez les informations de l'entreprise</p>
             </div>
 
             <form method="post" action="api/add_cand.php" class="space-y-6">
@@ -69,8 +69,8 @@ if(!isset($_SESSION["auth"]))
                     <div>
                         <label class="block text-sm font-semibold text-slate-700 mb-2">Type de candidature</label>
                         <select name="type" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent transition">
-                        <option value="job_offer">Offre d'emploi</option>
-                        <option value="spontaneous">Spontanée</option>
+                            <option value="job_offer">Offre d'emploi</option>
+                            <option value="spontaneous">Spontanée</option>
                         </select>
                     </div>
                 </div>
@@ -97,52 +97,6 @@ if(!isset($_SESSION["auth"]))
                     <label class="block text-sm font-semibold text-slate-700 mb-2">Infos supplémentaires</label>
                     <textarea name="infos" type="infos" rows="3" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent transition" ></textarea>
                 </div>
-
-                <hr class="border-slate-200 my-8">
-
-                <div class="space-y-4 bg-slate-50 p-5 rounded-xl border border-slate-200 contact-block">
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm font-bold text-indigo-600 uppercase tracking-wider">Contact 1</span>
-                    </div>
-                
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">Nom</label>
-                            <input type="text" name="contact_name1" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600" />
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">Email</label>
-                            <input type="email" name="contact_email1" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600" />
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">Tél</label>
-                        <input type="phone" name="contact_phone1" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600" />
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">Rôle</label>
-                        <select name="contact_role1" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600">
-                            <option value="CTO">CTO</option>
-                            <option value="CEO">CEO</option>
-                            <option value="Lead dev">Lead dev</option>
-                            <option value="Tech lead">Tech lead</option>
-                            <option value="Fondateur">Fondateur</option>
-                            <option value="Chasseur IT">Chasseur IT</option>
-                            <option value="Responsable du recrutement">Responsable du recrutement</option>
-                            <option value="Développeur">Développeur</option>
-                            <option value="Autre">Autre</option>
-                        </select>
-                    </div>
-                </div>
-
-                <input id="nb_contacts" name="nb_contacts" value="1" hidden />
-
-                <button id="add_contact" class="flex flex-col sm:flex-row items-center gap-3 pt-4">
-                    + Ajouter un contact
-                </button>
                 
                 <button id="save_cand" class="w-full sm:flex-1 px-4 py-2.5 border border-transparent text-sm font-semibold rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 shadow-md transition">
                     Sauvegarder la candidature
@@ -160,66 +114,6 @@ if(!isset($_SESSION["auth"]))
 </html>
 
 <script>
-    let indexContact = 2;
-
-    document.getElementById("add_contact").addEventListener("click", (e) =>
-    {
-        e.preventDefault();
-
-        const contactDiv = document.createElement("div");
-        contactDiv.classList.add("contact-block");
-        contactDiv.id = `contact${indexContact}`;
-
-        contactDiv.innerHTML = `
-        <hr class="border-slate-200 my-8">
-
-        <div class="space-y-4 bg-slate-50 p-5 rounded-xl border border-slate-200 contact-block">
-            <div class="flex justify-between items-center">
-                <span class="text-sm font-bold text-indigo-600 uppercase tracking-wider">Contact ${indexContact}</span>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">Nom</label>
-                    <input type="text" name="contact_name${indexContact}" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600" />
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">Email</label>
-                    <input type="email" name="contact_email${indexContact}" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600" />
-                </div>
-            </div>
-
-            <div>
-                <label class="block text-xs font-semibold text-slate-600 mb-1">Tél</label>
-                <input type="phone" name="contact_phone${indexContact}" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600" />
-            </div>
-
-            <div>
-                <label class="block text-xs font-semibold text-slate-600 mb-1">Rôle</label>
-                <select name="contact_role${indexContact}" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600">
-                    <option value="CTO">CTO</option>
-                    <option value="CEO">CEO</option>
-                    <option value="Lead dev">Lead dev</option>
-                    <option value="Tech lead">Tech lead</option>
-                    <option value="Fondateur">Fondateur</option>
-                    <option value="Chasseur IT">Chasseur IT</option>
-                    <option value="Responsable du recrutement">Responsable du recrutement</option>
-                    <option value="Développeur">Développeur</option>
-                    <option value="Autre">Autre</option>
-                </select>
-            </div>
-        </div>`;
-
-        indexContact++;
-        document.getElementById("nb_contacts").value = indexContact - 1;
-
-        const addButton = document.getElementById("add_contact");
-        addButton.parentNode.insertBefore(contactDiv, addButton);
-    });
-
-    /////////////////////////////////////////
-
     const okFlash = document.getElementById("ok_flash");
 
     if(okFlash)

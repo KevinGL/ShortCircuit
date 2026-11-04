@@ -84,9 +84,12 @@ if(!isset($_SESSION["auth"]))
                 <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">Calendrier des suivis</h2>
                 <p class="text-sm text-slate-500 mt-1">Court-circuitez les filtres RH et ATS !</p>
             </div>
-            <div>
+            <div class="flex flex-row gap-2">
                 <a href="add_cand.php" class="inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 shadow-md hover:shadow-lg transition-all">
                     + Enregistrer une nouvelle candidature
+                </a>
+                <a href="add_contacts.php" class="inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-xl text-white bg-green-800 hover:bg-green-900 shadow-md hover:shadow-lg transition-all">
+                    + Enregistrer un nouveau contact
                 </a>
             </div>
         </div>
