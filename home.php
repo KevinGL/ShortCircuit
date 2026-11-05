@@ -151,7 +151,7 @@ if(!isset($_SESSION["auth"]))
           date.setMonth(paramsDate[1] - 1);
           date.setDate(paramsDate[2]);
 
-          if(Date.now() > date.getTime() + 7 * 24 * 3600 * 1000)
+          if(Date.now() > date.getTime() + 2 * 7 * 24 * 3600 * 1000)
           {
             event.backgroundColor = "#d37c0b";
           }
