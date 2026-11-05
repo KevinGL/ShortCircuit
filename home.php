@@ -125,7 +125,7 @@ if(!isset($_SESSION["auth"]))
       {
         const event =
         {
-          title: c.society,
+          title: c.status !== "disable" ? c.society : "N/A",
           start: c.date
         };
 
@@ -151,7 +151,7 @@ if(!isset($_SESSION["auth"]))
           date.setMonth(paramsDate[1] - 1);
           date.setDate(paramsDate[2]);
 
-          if(Date.now() > date.getTime() + 7 * 24 * 3600)
+          if(Date.now() > date.getTime() + 7 * 24 * 3600 * 1000)
           {
             event.backgroundColor = "#d37c0b";
           }
@@ -167,6 +167,11 @@ if(!isset($_SESSION["auth"]))
         if(c.status === "refused")
         {
           event.backgroundColor = "#ff0000";
+        }
+
+        if(c.status === "disable")
+        {
+            event.backgroundColor = "#b4b4b4";
         }
 
         event.extendedProps = {id: c.id};

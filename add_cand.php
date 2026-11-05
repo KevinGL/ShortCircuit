@@ -89,6 +89,7 @@ if(!isset($_SESSION["auth"]))
                             <option value="relaunched">Relancée</option>
                             <option value="responded">Répondue</option>
                             <option value="refused">Refusée</option>
+                            <option value="disable">Déactivée</option>
                         </select>
                     </div>
                 </div>
