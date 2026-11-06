@@ -24,15 +24,16 @@ if(!isset($_POST["society"]) || $_POST["society"] === "")
 
 $req = $pdo->prepare("SELECT id FROM candidacy WHERE society = :society");
 $res = $req->execute(["society" => $_POST["society"]]);
+$cand = $req->fetch();
 
-if(!$res)
+if(!$cand)
 {
     $_SESSION["flash"] = ["status" => "error", "message" => "Une erreur s'est produite"];
     header('location: ../add_contacts.php');
     die();
 }
 
-$candId = $req->fetch()["id"];
+$candId = $cand["id"];
 
 $req = $pdo->prepare("INSERT INTO contact (name, email, phone, role, cand_id) VALUES (:name, :email, :phone, :role, :cand_id)");
 $res = $req->execute([
