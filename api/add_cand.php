@@ -24,7 +24,7 @@ $req = $pdo->prepare("INSERT INTO candidacy (society, type, status, date, infos)
 $res = $req->execute([
     "society" => $_POST["society"],
     "type" => $_POST["type"],
-    "status" => "added",
+    "status" => $_POST["status"],
     "date" => $_POST["date"],
     "infos" => $_POST["infos"],
 ]);
