@@ -39,5 +39,32 @@ $stmt->execute([
         "id" => $_POST["id"]
     ]);
 
+$paramsContact = [];
+
+foreach($_POST as $key => $value)
+{
+    if(strpos($key, "contact_") === 0)
+    {
+        $params = explode("_", $key);
+
+        $col = $params[1];
+        $id = $params[2];
+
+        $paramsContact[$id][$col] = $value;
+    }
+}
+
+foreach($paramsContact as $key => $value)
+{
+    $stmt = $pdo->prepare("UPDATE contact SET name = :name, email = :email, phone = :phone, role = :role WHERE id = :id");
+    $stmt->execute([
+        "name" => $value["name"],
+        "email" => $value["email"],
+        "phone" => $value["phone"],
+        "role" => $value["role"],
+        "id" => $key
+    ]);
+}
+
 $_SESSION["flash"] = ["status" => "success", "message" => "Candidature mise à jour"];
 header('location: ../index.php');

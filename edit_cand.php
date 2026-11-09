@@ -116,31 +116,45 @@ $candidacy = getCandById($_GET["id"]);
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-xs font-semibold text-slate-600 mb-1">Nom</label>
-                                <div class="bg-slate-50 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-600">
-                                    <?= $contact["name"] ?>
-                                </div>
+                                <input class="bg-white w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-600"
+                                       type="text"
+                                       value="<?= $contact['name'] ?>"
+                                       name="contact_name_<?= $contact["id"] ?>"
+                                />
                             </div>
 
                             <div>
                                 <label class="block text-xs font-semibold text-slate-600 mb-1">Email</label>
-                                <div class="bg-slate-50 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-600">
-                                    <?= $contact["email"] ?>
-                                </div>
+                                <input class="bg-white w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-600"
+                                       type="email"
+                                       value="<?= $contact['email'] ?>"
+                                       name="contact_email_<?= $contact["id"] ?>"
+                                />
                             </div>
                         </div>
 
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1">Tél</label>
-                            <div class="bg-slate-50 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-600">
-                                <?= $contact["phone"] !== "" ? $contact["phone"] :  "N/A" ?>
-                            </div>
+                            <input class="bg-white w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-600"
+                                    type="phone"
+                                    value="<?= $contact['phone'] !== '' ? : 'N/A' ?>"
+                                    name="contact_phone_<?= $contact["id"] ?>"
+                            />
                         </div>
 
                         <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">Rôle</label>
-                            <div class="bg-slate-50 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-600">
-                                <?= $contact["role"] ?>
-                            </div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2">Fonction</label>
+                            <select name="contact_role_<?= $contact["id"] ?>" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent transition">
+                                <option value="CTO" <?php if($contact["role"] === "CTO") echo "selected" ?>>CTO</option>
+                                <option value="CEO" <?php if($contact["role"] === "CEO") echo "selected" ?>>CEO</option>
+                                <option value="Lead dev" <?php if($contact["role"] === "Lead dev") echo "selected" ?>>Lead dev</option>
+                                <option value="Tech lead" <?php if($contact["role"] === "Tech lead") echo "selected" ?>>Tech lead</option>
+                                <option value="Fondateur" <?php if($contact["role"] === "Fondateur") echo "selected" ?>>Fondateur</option>
+                                <option value="Chasseur IT" <?php if($contact["role"] === "Chasseur IT") echo "selected" ?>>Chasseur IT</option>
+                                <option value="Responsable du recrutement" <?php if($contact["role"] === "Responsable du recrutement") echo "selected" ?>>Responsable du recrutement</option>
+                                <option value="Développeur" <?php if($contact["role"] === "Développeur") echo "selected" ?>>Développeur</option>
+                                <option value="Autre" <?php if($contact["role"] === "Autre") echo "selected" ?>>Autre</option>
+                            </select>
                         </div>
                     </div>
 
