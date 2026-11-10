@@ -78,7 +78,7 @@ if(!isset($_SESSION["auth"]))
 
   <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-    <sectionclass="space-y-6">
+    <section class="space-y-6">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
             <div>
                 <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">Calendrier des suivis</h2>

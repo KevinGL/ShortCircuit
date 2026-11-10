@@ -89,6 +89,11 @@ $cands = $res->fetchAll();
                     </div>
 
                     <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">LinkedIn</label>
+                        <input name="linkedin" type="url" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent transition"/>
+                    </div>
+
+                    <div>
                         <label class="block text-sm font-semibold text-slate-700 mb-2">Fonction</label>
                         <select name="role" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent transition">
                             <option value="CTO">CTO</option>

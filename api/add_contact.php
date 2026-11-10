@@ -35,11 +35,12 @@ if(!$cand)
 
 $candId = $cand["id"];
 
-$req = $pdo->prepare("INSERT INTO contact (name, email, phone, role, cand_id) VALUES (:name, :email, :phone, :role, :cand_id)");
+$req = $pdo->prepare("INSERT INTO contact (name, email, phone, linkedin, role, cand_id) VALUES (:name, :email, :phone, :linkedin, :role, :cand_id)");
 $res = $req->execute([
     "name" => $_POST["name"],
     "email" => $_POST["email"],
     "phone" => $_POST["phone"],
+    "linkedin" => $_POST["linkedin"],
     "role" => $_POST["role"],
     "cand_id" => $candId
 ]);

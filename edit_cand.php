@@ -144,6 +144,15 @@ $candidacy = getCandById($_GET["id"]);
                         </div>
 
                         <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">LinkedIn</label>
+                            <input class="bg-white w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-600"
+                                    type="url"
+                                    value="<?= $contact['linkedin'] !== '' ? $contact['linkedin'] : 'N/A' ?>"
+                                    name="contact_linkedin_<?= $contact["id"] ?>"
+                            />
+                        </div>
+
+                        <div>
                             <label class="block text-sm font-semibold text-slate-700 mb-2">Fonction</label>
                             <select name="contact_role_<?= $contact["id"] ?>" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent transition">
                                 <option value="CTO" <?php if($contact["role"] === "CTO") echo "selected" ?>>CTO</option>

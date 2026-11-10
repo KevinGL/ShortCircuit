@@ -15,7 +15,7 @@ function getCandById(string $id)
 
     $pdo = getPDO();
 
-    $stmt = $pdo->prepare("SELECT ca.society, ca.type, ca.status, ca.date, ca.infos, ca.id, co.name AS contact_name, co.email AS contact_email, co.phone AS contact_phone, co.role AS contact_role, co.id AS contact_id FROM candidacy ca LEFT JOIN contact co ON co.cand_id = ca.id WHERE ca.id = :id");
+    $stmt = $pdo->prepare("SELECT ca.society, ca.type, ca.status, ca.date, ca.infos, ca.id, co.name AS contact_name, co.email AS contact_email, co.phone AS contact_phone, co.linkedin AS contact_linkedin, co.role AS contact_role, co.id AS contact_id FROM candidacy ca LEFT JOIN contact co ON co.cand_id = ca.id WHERE ca.id = :id");
     $stmt->execute(["id" => $_GET["id"]]);
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -40,6 +40,7 @@ function getCandById(string $id)
                 'name'  => $row['contact_name'],
                 'email' => $row['contact_email'],
                 'phone' => $row['contact_phone'],
+                'linkedin' => $row['contact_linkedin'],
                 'role'  => $row['contact_role'],
                 'id'  => $row['contact_id']
             ];

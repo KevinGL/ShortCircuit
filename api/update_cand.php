@@ -56,11 +56,12 @@ foreach($_POST as $key => $value)
 
 foreach($paramsContact as $key => $value)
 {
-    $stmt = $pdo->prepare("UPDATE contact SET name = :name, email = :email, phone = :phone, role = :role WHERE id = :id");
+    $stmt = $pdo->prepare("UPDATE contact SET name = :name, email = :email, phone = :phone, linkedin = :linkedin, role = :role WHERE id = :id");
     $stmt->execute([
         "name" => $value["name"],
         "email" => $value["email"],
         "phone" => $value["phone"],
+        "linkedin" => $value["linkedin"],
         "role" => $value["role"],
         "id" => $key
     ]);
