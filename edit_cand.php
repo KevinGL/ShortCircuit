@@ -111,6 +111,7 @@ $candidacy = getCandById($_GET["id"]);
                     <div class="space-y-4 bg-slate-50 p-5 rounded-xl border border-slate-200 contact-block">
                         <div class="flex justify-between items-center">
                             <span class="text-sm font-bold text-indigo-600 uppercase tracking-wider">Contact <?= $index ?></span>
+                            <a href="api/del_contact.php?contact_id=<?= $contact['id'] ?>&cand_id=<?= $candidacy['id'] ?>" class="hover:cursor-pointer">&#10060;</a>
                         </div>
                     
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -137,7 +138,7 @@ $candidacy = getCandById($_GET["id"]);
                             <label class="block text-xs font-semibold text-slate-600 mb-1">Tél</label>
                             <input class="bg-white w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-600"
                                     type="phone"
-                                    value="<?= $contact['phone'] !== '' ? : 'N/A' ?>"
+                                    value="<?= $contact['phone'] !== '' ? $contact['phone'] : 'N/A' ?>"
                                     name="contact_phone_<?= $contact["id"] ?>"
                             />
                         </div>
