@@ -138,7 +138,7 @@ $candidacy = getCandById($_GET["id"]);
                             <label class="block text-xs font-semibold text-slate-600 mb-1">Tél</label>
                             <input class="bg-white w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-600"
                                     type="phone"
-                                    value="<?= $contact['phone'] !== '' ? $contact['phone'] : 'N/A' ?>"
+                                    value="<?= $contact['phone'] !== '' ? $contact['phone'] : '' ?>"
                                     name="contact_phone_<?= $contact["id"] ?>"
                             />
                         </div>
@@ -147,7 +147,7 @@ $candidacy = getCandById($_GET["id"]);
                             <label class="block text-xs font-semibold text-slate-600 mb-1">LinkedIn</label>
                             <input class="bg-white w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-600"
                                     type="url"
-                                    value="<?= $contact['linkedin'] !== '' ? $contact['linkedin'] : 'N/A' ?>"
+                                    value="<?= $contact['linkedin'] !== '' ? $contact['linkedin'] : '' ?>"
                                     name="contact_linkedin_<?= $contact["id"] ?>"
                             />
                         </div>
