@@ -146,7 +146,7 @@ $candidacy = getCandById($_GET["id"]);
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 mb-1">LinkedIn</label>
                             <input class="bg-white w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-600"
-                                    type="url"
+                                    type="text"
                                     value="<?= $contact['linkedin'] !== '' ? $contact['linkedin'] : '' ?>"
                                     name="contact_linkedin_<?= $contact["id"] ?>"
                             />
