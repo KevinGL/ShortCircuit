@@ -93,7 +93,8 @@ $candidacy = getCandById($_GET["id"]);
                             <option value="relaunched" <?php if($candidacy["status"] === "relaunched") echo "selected" ?>>Relancée</option>
                             <option value="responded" <?php if($candidacy["status"] === "responded") echo "selected" ?>>Répondue</option>
                             <option value="refused" <?php if($candidacy["status"] === "refused") echo "selected" ?>>Refusée</option>
-                            <option value="disable" <?php if($candidacy["status"] === "disable") echo "selected" ?>>Déactivée</option>
+                            <option value="expired" <?php if($candidacy["status"] === "expired") echo "selected" ?>>Expirée</option>
+                            <option value="disable" <?php if($candidacy["status"] === "disable") echo "selected" ?>>Désactivée</option>
                         </select>
                     </div>
                 </div>

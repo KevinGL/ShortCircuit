@@ -164,7 +164,7 @@ if(!isset($_SESSION["auth"]))
         }
 
         else
-        if(c.status === "refused")
+        if(c.status === "refused" || c.status === "expired")
         {
           event.backgroundColor = "#ff0000";
         }
