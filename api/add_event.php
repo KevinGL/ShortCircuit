@@ -2,6 +2,12 @@
 
 session_start();
 
+if(!isset($_SESSION["auth"]))
+{
+    header("location: auth/login.php");
+    die();
+}
+
 require_once __DIR__ . "/../db/pdo.php";
 
 if(!isset($_POST["society"]) || $_POST["society"] === "")
@@ -50,9 +56,11 @@ if(strtotime($_POST["date"]) < strtotime($res["date"]))
     die();
 }
 
-$stmt = $pdo->prepare("SELECT id FROM event WHERE society_id = :society_id AND type = 'Repérage'");
+$stmt = $pdo->prepare("SELECT id, infos FROM event WHERE society_id = :society_id AND type = 'Repérage'");
 $stmt->execute(["society_id" => $societyId]);
 $res = $stmt->fetch();
+
+$infos = $res["infos"];
 
 if($res)
 {
@@ -65,7 +73,7 @@ $stmt = $pdo->prepare("INSERT INTO event (type, society_id, infos, date) VALUES 
 $stmt->execute([
     "type" => $_POST["type"],
     "society_id" => $societyId,
-    "infos" => $_POST["infos"],
+    "infos" => $infos . "\n" . $_POST["infos"],
     "date" => $_POST["date"]
 ]);
 

@@ -12,5 +12,10 @@ function getNextEventsPossibles(string $event): array
         "Entretien d'embauche" => ["Embauche", "Réponse négative", "Expiration"]
     ];
 
+    if($event === "")
+    {
+        return ["Repérage", "Candidature offre d'emploi", "Candidature spontanée"];
+    }
+
     return $next[$event] ?? [];
 }

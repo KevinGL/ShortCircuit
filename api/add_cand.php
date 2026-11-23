@@ -2,6 +2,12 @@
 
 session_start();
 
+if(!isset($_SESSION["auth"]))
+{
+    header("location: auth/login.php");
+    die();
+}
+
 require_once __DIR__ . "/../db/pdo.php";
 
 $pdo = getPDO();
