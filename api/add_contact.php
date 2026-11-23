@@ -2,8 +2,6 @@
 
 session_start();
 
-unset($_SESSION["society_last_cand"]);
-
 require_once __DIR__ . "/../db/pdo.php";
 
 $pdo = getPDO();
@@ -22,27 +20,27 @@ if(!isset($_POST["society"]) || $_POST["society"] === "")
     die();
 }
 
-$req = $pdo->prepare("SELECT id FROM candidacy WHERE society = :society");
-$res = $req->execute(["society" => $_POST["society"]]);
-$cand = $req->fetch();
+$stmt = $pdo->prepare("SELECT id FROM society WHERE name = :society");
+$stmt->execute(["society" => $_POST["society"]]);
+$res = $stmt->fetch();
 
-if(!$cand)
+if(!$res)
 {
     $_SESSION["flash"] = ["status" => "error", "message" => "Une erreur s'est produite"];
     header('location: ../add_contacts.php');
     die();
 }
 
-$candId = $cand["id"];
+$societyId = $res["id"];
 
-$req = $pdo->prepare("INSERT INTO contact (name, email, phone, linkedin, role, cand_id) VALUES (:name, :email, :phone, :linkedin, :role, :cand_id)");
+$req = $pdo->prepare("INSERT INTO contact (name, email, phone, linkedin, role, society_id) VALUES (:name, :email, :phone, :linkedin, :role, :society_id)");
 $res = $req->execute([
     "name" => $_POST["name"],
     "email" => $_POST["email"],
     "phone" => $_POST["phone"],
     "linkedin" => $_POST["linkedin"],
     "role" => $_POST["role"],
-    "cand_id" => $candId
+    "society_id" => $societyId
 ]);
 
 if(!$res)
@@ -54,4 +52,3 @@ if(!$res)
 
 $_SESSION["flash"] = ["status" => "success", "message" => "Contact ajouté avec succès"];
 header('location: ../home.php');
-die();

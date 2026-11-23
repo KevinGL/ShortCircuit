@@ -6,15 +6,15 @@ require_once __DIR__ . "/../db/pdo.php";
 
 $pdo = getPDO();
 
-if(!isset($_GET["contact_id"]) || !isset($_GET["cand_id"]))
+if(!isset($_GET["id"]))
 {
-    $_SESSION["flash"] = ["status" => "error", "message" => "Ids manquants"];
+    $_SESSION["flash"] = ["status" => "error", "message" => "Id manquant"];
     header('location: ../home.php');
     die();
 }
 
 $stmt = $pdo->prepare("DELETE FROM contact WHERE id = :id");
-$res = $stmt->execute(["id" => $_GET["contact_id"]]);
+$res = $stmt->execute(["id" => $_GET["id"]]);
 
 if(!$res)
 {
@@ -24,4 +24,4 @@ if(!$res)
 }
 
 $_SESSION["flash"] = ["status" => "success", "message" => "Contact supprimé"];
-header('location: ../edit_cand.php?id=' . $_GET["cand_id"]);
+header('location: ../home.php');

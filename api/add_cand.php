@@ -36,6 +36,4 @@ if(!$res)
     die();
 }
 
-$_SESSION["society_last_cand"] = $_POST["society"];
-
 header('location: ../add_contacts.php');

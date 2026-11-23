@@ -15,7 +15,7 @@ if(!isset($_SESSION["auth"]))
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ajout candidature</title>
+    <title>Nouvelle chronologie</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
 
@@ -42,9 +42,9 @@ if(!isset($_SESSION["auth"]))
 
     <header class="bg-white border-b border-slate-200 shadow-sm">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
-            <h1 class="text-lg font-bold text-indigo-600">🚀 Nouvelle Candidature</h1>
+            <h1 class="text-lg font-bold text-indigo-600">🚀 Démarrer une nouvelle chronologie</h1>
             <a href="home.php" class="text-sm font-medium text-slate-500 hover:text-indigo-600 transition flex items-center gap-1">
-                &larr; Revenir au calendrier
+                &larr; Revenir à la chronologie
             </a>
         </div>
     </header>
@@ -54,54 +54,40 @@ if(!isset($_SESSION["auth"]))
         <div class="bg-white shadow-xl shadow-slate-100 rounded-2xl border border-slate-200 p-6 sm:p-8">
 
             <div class="mb-8">
-                <h2 class="text-2xl font-extrabold text-slate-900">Enregistrer une candidature</h2>
-                <p class="text-sm text-slate-500 mt-1">Remplissez les informations de l'entreprise</p>
+                <h2 class="text-2xl font-extrabold text-slate-900">Ajouter une nouvelle chronologie</h2>
+                <p class="text-sm text-slate-500 mt-1">Remplissez les informations de l'événement</p>
             </div>
 
-            <form method="post" action="api/add_cand.php" class="space-y-6">
+            <form method="post" action="api/new_time.php" class="space-y-6">
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-2">Société</label>
-                        <input name="society" type="text" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent transition"/>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-2">Type de candidature</label>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Type d'événement</label>
                         <select name="type" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent transition">
-                            <option value="job_offer">Offre d'emploi</option>
-                            <option value="spontaneous">Spontanée</option>
+                            <option value="Repérage">Repérage</option>
+                            <option value="Candidature offre d'emploi">Candidature offre d'emploi</option>
+                            <option value="Candidature spontanée">Candidature spontanée</option>
                         </select>
                     </div>
-                </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-2">Date d'ajout</label>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Date de l'événement</label>
                         <input name="date" type="date" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent transition" />
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-2">Statut</label>
-                        <select name="status" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent transition">
-                            <option value="added">Ajoutée</option>
-                            <option value="treated" >Traitée</option>
-                            <option value="relaunched">Relancée</option>
-                            <option value="responded">Répondue</option>
-                            <option value="refused">Refusée</option>
-                            <option value="expired">Expirée</option>
-                            <option value="disable">Désactivée</option>
-                        </select>
                     </div>
                 </div>
 
                 <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Nom de la société</label>
+                    <input name="society" type="text" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent transition" />
+                </div>
+
+                <div>
                     <label class="block text-sm font-semibold text-slate-700 mb-2">Infos supplémentaires</label>
-                    <textarea name="infos" type="infos" rows="3" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent transition" ></textarea>
+                    <textarea name="infos" rows="3" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent transition" ></textarea>
                 </div>
                 
-                <button id="save_cand" class="w-full sm:flex-1 px-4 py-2.5 border border-transparent text-sm font-semibold rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 shadow-md transition">
-                    Sauvegarder la candidature
+                <button class="w-full sm:flex-1 px-4 py-2.5 border border-transparent text-sm font-semibold rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 shadow-md transition">
+                    Démarrer avec cet événement
                 </button>
             </form>
         </div>

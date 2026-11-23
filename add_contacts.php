@@ -2,17 +2,15 @@
 
 session_start();
 
+require_once __DIR__ . "/api/company.php";
+
 if(!isset($_SESSION["auth"]))
 {
     header("location: auth/login.php");
     die();
 }
 
-require_once "db/pdo.php";
-
-$pdo = getPDO();
-$res = $pdo->query("SELECT society FROM candidacy");
-$cands = $res->fetchAll();
+$companies = getCompanies();
 
 ?>
 
@@ -50,7 +48,7 @@ $cands = $res->fetchAll();
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
             <h1 class="text-lg font-bold text-indigo-600">🚀 Nouveau contact</h1>
             <a href="home.php" class="text-sm font-medium text-slate-500 hover:text-indigo-600 transition flex items-center gap-1">
-                &larr; Revenir au calendrier
+                &larr; Revenir à la chronologie
             </a>
         </div>
     </header>
@@ -60,15 +58,15 @@ $cands = $res->fetchAll();
         <div class="bg-white shadow-xl shadow-slate-100 rounded-2xl border border-slate-200 p-6 sm:p-8">
 
             <div class="mb-8">
-                <h2 class="text-2xl font-extrabold text-slate-900">Enregistrer un contact <?php if(strpos($_SERVER["HTTP_REFERER"], "add_cand.php")) echo "(Facultatif)" ?></h2>
+                <h2 class="text-2xl font-extrabold text-slate-900">Enregistrer un contact</h2>
                 <p class="text-sm text-slate-500 mt-1">Remplissez les informations du contact</p>
             </div>
 
             <form method="post" action="api/add_contact.php" class="space-y-6">
 
                 <datalist id="roles-list">
-                    <?php foreach($cands as $cand): ?>
-                        <option value="<?= $cand['society'] ?>">
+                    <?php foreach($companies as $c): ?>
+                        <option value="<?= $c['name'] ?>">
                     <?php endforeach ?>
                 </datalist>
 
@@ -110,7 +108,7 @@ $cands = $res->fetchAll();
 
                     <div>
                         <label class="block text-sm font-semibold text-slate-700 mb-2">Société</label>
-                        <input list="roles-list" value="<?= $_SESSION["society_last_cand"] ?? '' ?>" name="society" type="text" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent transition"/>
+                        <input list="roles-list" value="<?= $_GET["society"] ?? '' ?>" name="society" type="text" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent transition"/>
                     </div>
                 </div>
                 
