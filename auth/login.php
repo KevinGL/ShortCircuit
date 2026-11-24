@@ -3,7 +3,7 @@
 session_start();
 
 require_once __DIR__ . "/../utils/env.php";
-require_once __DIR__ . "/auth.php";
+require_once __DIR__ . "/../safety/csrf.php";
 
 if(isset($_SESSION["auth"]))
 {
@@ -11,11 +11,14 @@ if(isset($_SESSION["auth"]))
     die();
 }
 
-if($_SERVER["REQUEST_METHOD"] === "POST"):
+if(empty($_SESSION["csrf"]))
+{
+    $_SESSION["csrf"] = csrf();
+}
 
-  auth($_POST["password"]);
+$token = $_SESSION["csrf"];
 
-endif ?>
+?>
 
 <!doctype html>
 <html lang="fr" class="h-full bg-slate-50">
@@ -62,11 +65,13 @@ endif ?>
         <h1 class="text-2xl font-extrabold text-slate-900 mb-2">Accès protégé</h1>
         <p class="text-sm text-slate-500 mb-8">Veuillez entrer votre mot de passe pour continuer.</p>
 
-        <form method="post" class="space-y-5 text-left">
+        <form method="post" action="auth.php" class="space-y-5 text-left">
             <div>
                 <label class="block text-sm font-semibold text-slate-700 mb-2">Mot de passe</label>
                 <input type="password" name="password" required autofocus class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent transition" placeholder="••••••••••••" />
             </div>
+
+            <input type="text" name="csrf" value="<?= $token ?>" hidden />
 
             <button type="submit" class="w-full inline-flex justify-center items-center px-4 py-3 border border-transparent text-sm font-semibold rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 shadow-md hover:shadow-lg transition-all">
               Envoyer

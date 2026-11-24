@@ -1,5 +1,17 @@
 <?php
 
+session_start();
+
+if(!isset($_POST["csrf"]) || $_SESSION["csrf"] !== $_POST["csrf"])
+{
+    header("location: login.php");
+    exit();
+}
+
+unset($_SESSION["csrf"]);
+
+require_once __DIR__ . "/../utils/env.php";
+
 function auth(string $password)
 {
     $vars = getEnvVar();
@@ -17,4 +29,20 @@ function auth(string $password)
         header("location: login.php");
         die();
     }
+}
+
+$vars = getEnvVar();
+
+if(password_verify($_POST["password"], $vars["PASSWORD"]))
+{
+    $_SESSION["auth"] = true;
+    header("location: ../home.php");
+    die();
+}
+
+else
+{
+    $_SESSION["flash"] = ["status" => "error", "message" => "Mauvaise mot de passe"];
+    header("location: login.php");
+    die();
 }
