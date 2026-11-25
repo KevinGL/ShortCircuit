@@ -25,7 +25,17 @@ if(!isset($_GET["id"]))
 }
 
 $lastEvent = getBeforeLastEventFromSociety($_GET["society"]);
-$events = getNextEventsPossibles($lastEvent);
+$events =
+[
+    "Repérage",
+    "Candidature offre d'emploi",
+    "Candidature spontanée",
+    "Relance",
+    "Réponse positive",
+    "Réponse négative",
+    "Entretien d'embauche",
+    "Embauche"
+];
 
 if(empty($events) && $lastEvent !== "")
 {

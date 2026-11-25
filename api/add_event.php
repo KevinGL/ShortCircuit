@@ -60,11 +60,12 @@ $stmt = $pdo->prepare("SELECT id, infos FROM event WHERE society_id = :society_i
 $stmt->execute(["society_id" => $societyId]);
 $res = $stmt->fetch();
 
-$infos = $res["infos"];
+$infos = "";
 
 if($res)
 {
     $idToDelete = $res["id"];
+    $infos = $res["infos"];
     $stmt = $pdo->prepare("DELETE FROM event WHERE id = :id");
     $stmt->execute(["id" => $idToDelete]);
 }
