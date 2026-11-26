@@ -8,7 +8,7 @@ function getNextEventsPossibles(string $event): array
         "Candidature offre d'emploi" => ["Relance", "Réponse négative", "Réponse positive", "Expiration"],
         "Candidature spontanée" => ["Relance", "Réponse négative", "Réponse positive", "Expiration"],
         "Relance" => ["Réponse négative", "Réponse positive", "Expiration"],
-        "Réponse positive" => ["Entretien d'embauche", "Expiration"],
+        "Réponse positive" => ["Entretien d'embauche", "Entretien téléphonique / visio", "Expiration"],
         "Entretien d'embauche" => ["Embauche", "Réponse négative", "Expiration"]
     ];
 

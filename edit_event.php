@@ -33,6 +33,7 @@ $events =
     "Relance",
     "Réponse positive",
     "Réponse négative",
+    "Entretien téléphonique / visio",
     "Entretien d'embauche",
     "Embauche"
 ];
